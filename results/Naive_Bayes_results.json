@@ -1,0 +1,1 @@
+{"Model": "Naive Bayes", "Accuracy": 0.5961428571428572, "ROC-AUC": 0.6735113831873905, "F1-Score": 0.473752792256143, "Precision": 0.6790288153681964, "Recall": 0.3637793024585477, "MCC": 0.21684081968613653, "Params": "Brak optymalizacji"}

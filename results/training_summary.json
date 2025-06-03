@@ -1,0 +1,548 @@
+{
+    "total_training_time": 72.73,
+    "models_trained": [
+        "LightGBM"
+    ],
+    "average_training_time": 72.73,
+    "preprocessing_config": {
+        "preprocessor": {
+            "type": "<class 'sklearn.compose._column_transformer.ColumnTransformer'>",
+            "params": {
+                "force_int_remainder_cols": 1,
+                "n_jobs": "None",
+                "remainder": "passthrough",
+                "sparse_threshold": 0.3,
+                "transformer_weights": "None",
+                "transformers": [
+                    [
+                        "num",
+                        {
+                            "type": "<class 'sklearn.pipeline.Pipeline'>",
+                            "params": {
+                                "memory": "None",
+                                "steps": [
+                                    [
+                                        "imputer",
+                                        {
+                                            "type": "<class 'sklearn.impute._base.SimpleImputer'>",
+                                            "params": {
+                                                "add_indicator": 0,
+                                                "copy": 1,
+                                                "fill_value": "None",
+                                                "keep_empty_features": 0,
+                                                "missing_values": NaN,
+                                                "strategy": "median"
+                                            },
+                                            "steps": []
+                                        }
+                                    ],
+                                    [
+                                        "scaler",
+                                        {
+                                            "type": "<class 'sklearn.preprocessing._data.StandardScaler'>",
+                                            "params": {
+                                                "copy": 1,
+                                                "with_mean": 1,
+                                                "with_std": 1
+                                            },
+                                            "steps": []
+                                        }
+                                    ]
+                                ],
+                                "transform_input": "None",
+                                "verbose": 0,
+                                "imputer": {
+                                    "type": "<class 'sklearn.impute._base.SimpleImputer'>",
+                                    "params": {
+                                        "add_indicator": 0,
+                                        "copy": 1,
+                                        "fill_value": "None",
+                                        "keep_empty_features": 0,
+                                        "missing_values": NaN,
+                                        "strategy": "median"
+                                    },
+                                    "steps": []
+                                },
+                                "scaler": {
+                                    "type": "<class 'sklearn.preprocessing._data.StandardScaler'>",
+                                    "params": {
+                                        "copy": 1,
+                                        "with_mean": 1,
+                                        "with_std": 1
+                                    },
+                                    "steps": []
+                                },
+                                "imputer__add_indicator": 0,
+                                "imputer__copy": 1,
+                                "imputer__fill_value": "None",
+                                "imputer__keep_empty_features": 0,
+                                "imputer__missing_values": NaN,
+                                "imputer__strategy": "median",
+                                "scaler__copy": 1,
+                                "scaler__with_mean": 1,
+                                "scaler__with_std": 1
+                            },
+                            "steps": [
+                                "('imputer', SimpleImputer(strategy='median'))",
+                                "('scaler', StandardScaler())"
+                            ]
+                        },
+                        [
+                            "age",
+                            "height",
+                            "weight",
+                            "ap_hi",
+                            "ap_lo",
+                            "bmi",
+                            "pulse_pressure"
+                        ]
+                    ],
+                    [
+                        "cat",
+                        {
+                            "type": "<class 'sklearn.pipeline.Pipeline'>",
+                            "params": {
+                                "memory": "None",
+                                "steps": [
+                                    [
+                                        "imputer",
+                                        {
+                                            "type": "<class 'sklearn.impute._base.SimpleImputer'>",
+                                            "params": {
+                                                "add_indicator": 0,
+                                                "copy": 1,
+                                                "fill_value": "brak",
+                                                "keep_empty_features": 0,
+                                                "missing_values": NaN,
+                                                "strategy": "most_frequent"
+                                            },
+                                            "steps": []
+                                        }
+                                    ],
+                                    [
+                                        "encoder",
+                                        {
+                                            "type": "<class 'sklearn.preprocessing._encoders.OneHotEncoder'>",
+                                            "params": {
+                                                "categories": "auto",
+                                                "drop": "None",
+                                                "dtype": "{'__repr__': <slot wrapper '__repr__' of 'numpy.float64' objects>, '__hash__': <slot wrapper '__hash__' of 'numpy.float64' objects>, '__str__': <slot wrapper '__str__' of 'numpy.float64' objects>, '__lt__': <slot wrapper '__lt__' of 'numpy.float64' objects>, '__le__': <slot wrapper '__le__' of 'numpy.float64' objects>, '__eq__': <slot wrapper '__eq__' of 'numpy.float64' objects>, '__ne__': <slot wrapper '__ne__' of 'numpy.float64' objects>, '__gt__': <slot wrapper '__gt__' of 'numpy.float64' objects>, '__ge__': <slot wrapper '__ge__' of 'numpy.float64' objects>, '__add__': <slot wrapper '__add__' of 'numpy.float64' objects>, '__radd__': <slot wrapper '__radd__' of 'numpy.float64' objects>, '__sub__': <slot wrapper '__sub__' of 'numpy.float64' objects>, '__rsub__': <slot wrapper '__rsub__' of 'numpy.float64' objects>, '__mul__': <slot wrapper '__mul__' of 'numpy.float64' objects>, '__rmul__': <slot wrapper '__rmul__' of 'numpy.float64' objects>, '__mod__': <slot wrapper '__mod__' of 'numpy.float64' objects>, '__rmod__': <slot wrapper '__rmod__' of 'numpy.float64' objects>, '__divmod__': <slot wrapper '__divmod__' of 'numpy.float64' objects>, '__rdivmod__': <slot wrapper '__rdivmod__' of 'numpy.float64' objects>, '__pow__': <slot wrapper '__pow__' of 'numpy.float64' objects>, '__rpow__': <slot wrapper '__rpow__' of 'numpy.float64' objects>, '__neg__': <slot wrapper '__neg__' of 'numpy.float64' objects>, '__pos__': <slot wrapper '__pos__' of 'numpy.float64' objects>, '__abs__': <slot wrapper '__abs__' of 'numpy.float64' objects>, '__bool__': <slot wrapper '__bool__' of 'numpy.float64' objects>, '__int__': <slot wrapper '__int__' of 'numpy.float64' objects>, '__float__': <slot wrapper '__float__' of 'numpy.float64' objects>, '__floordiv__': <slot wrapper '__floordiv__' of 'numpy.float64' objects>, '__rfloordiv__': <slot wrapper '__rfloordiv__' of 'numpy.float64' objects>, '__truediv__': <slot wrapper '__truediv__' of 'numpy.float64' objects>, '__rtruediv__': <slot wrapper '__rtruediv__' of 'numpy.float64' objects>, '__new__': <built-in method __new__ of type object at 0x118992560>, 'as_integer_ratio': <method 'as_integer_ratio' of 'numpy.float64' objects>, 'is_integer': <method 'is_integer' of 'numpy.float64' objects>, '__class_getitem__': <method '__class_getitem__' of 'numpy.float64' objects>, '__doc__': \"Double-precision floating-point number type, compatible with Python\\n    :class:`float` and C ``double``.\\n\\n    :Character code: ``'d'``\\n    :Canonical name: `numpy.double`\\n    :Alias on this platform (Darwin arm64): `numpy.float64`: 64-bit precision floating-point number type: sign bit, 11 bits exponent, 52 bits mantissa.\"}",
+                                                "feature_name_combiner": "concat",
+                                                "handle_unknown": "ignore",
+                                                "max_categories": "None",
+                                                "min_frequency": "None",
+                                                "sparse_output": 1
+                                            },
+                                            "steps": []
+                                        }
+                                    ]
+                                ],
+                                "transform_input": "None",
+                                "verbose": 0,
+                                "imputer": {
+                                    "type": "<class 'sklearn.impute._base.SimpleImputer'>",
+                                    "params": {
+                                        "add_indicator": 0,
+                                        "copy": 1,
+                                        "fill_value": "brak",
+                                        "keep_empty_features": 0,
+                                        "missing_values": NaN,
+                                        "strategy": "most_frequent"
+                                    },
+                                    "steps": []
+                                },
+                                "encoder": {
+                                    "type": "<class 'sklearn.preprocessing._encoders.OneHotEncoder'>",
+                                    "params": {
+                                        "categories": "auto",
+                                        "drop": "None",
+                                        "dtype": "{'__repr__': <slot wrapper '__repr__' of 'numpy.float64' objects>, '__hash__': <slot wrapper '__hash__' of 'numpy.float64' objects>, '__str__': <slot wrapper '__str__' of 'numpy.float64' objects>, '__lt__': <slot wrapper '__lt__' of 'numpy.float64' objects>, '__le__': <slot wrapper '__le__' of 'numpy.float64' objects>, '__eq__': <slot wrapper '__eq__' of 'numpy.float64' objects>, '__ne__': <slot wrapper '__ne__' of 'numpy.float64' objects>, '__gt__': <slot wrapper '__gt__' of 'numpy.float64' objects>, '__ge__': <slot wrapper '__ge__' of 'numpy.float64' objects>, '__add__': <slot wrapper '__add__' of 'numpy.float64' objects>, '__radd__': <slot wrapper '__radd__' of 'numpy.float64' objects>, '__sub__': <slot wrapper '__sub__' of 'numpy.float64' objects>, '__rsub__': <slot wrapper '__rsub__' of 'numpy.float64' objects>, '__mul__': <slot wrapper '__mul__' of 'numpy.float64' objects>, '__rmul__': <slot wrapper '__rmul__' of 'numpy.float64' objects>, '__mod__': <slot wrapper '__mod__' of 'numpy.float64' objects>, '__rmod__': <slot wrapper '__rmod__' of 'numpy.float64' objects>, '__divmod__': <slot wrapper '__divmod__' of 'numpy.float64' objects>, '__rdivmod__': <slot wrapper '__rdivmod__' of 'numpy.float64' objects>, '__pow__': <slot wrapper '__pow__' of 'numpy.float64' objects>, '__rpow__': <slot wrapper '__rpow__' of 'numpy.float64' objects>, '__neg__': <slot wrapper '__neg__' of 'numpy.float64' objects>, '__pos__': <slot wrapper '__pos__' of 'numpy.float64' objects>, '__abs__': <slot wrapper '__abs__' of 'numpy.float64' objects>, '__bool__': <slot wrapper '__bool__' of 'numpy.float64' objects>, '__int__': <slot wrapper '__int__' of 'numpy.float64' objects>, '__float__': <slot wrapper '__float__' of 'numpy.float64' objects>, '__floordiv__': <slot wrapper '__floordiv__' of 'numpy.float64' objects>, '__rfloordiv__': <slot wrapper '__rfloordiv__' of 'numpy.float64' objects>, '__truediv__': <slot wrapper '__truediv__' of 'numpy.float64' objects>, '__rtruediv__': <slot wrapper '__rtruediv__' of 'numpy.float64' objects>, '__new__': <built-in method __new__ of type object at 0x118992560>, 'as_integer_ratio': <method 'as_integer_ratio' of 'numpy.float64' objects>, 'is_integer': <method 'is_integer' of 'numpy.float64' objects>, '__class_getitem__': <method '__class_getitem__' of 'numpy.float64' objects>, '__doc__': \"Double-precision floating-point number type, compatible with Python\\n    :class:`float` and C ``double``.\\n\\n    :Character code: ``'d'``\\n    :Canonical name: `numpy.double`\\n    :Alias on this platform (Darwin arm64): `numpy.float64`: 64-bit precision floating-point number type: sign bit, 11 bits exponent, 52 bits mantissa.\"}",
+                                        "feature_name_combiner": "concat",
+                                        "handle_unknown": "ignore",
+                                        "max_categories": "None",
+                                        "min_frequency": "None",
+                                        "sparse_output": 1
+                                    },
+                                    "steps": []
+                                },
+                                "imputer__add_indicator": 0,
+                                "imputer__copy": 1,
+                                "imputer__fill_value": "brak",
+                                "imputer__keep_empty_features": 0,
+                                "imputer__missing_values": NaN,
+                                "imputer__strategy": "most_frequent",
+                                "encoder__categories": "auto",
+                                "encoder__drop": "None",
+                                "encoder__dtype": "{'__repr__': <slot wrapper '__repr__' of 'numpy.float64' objects>, '__hash__': <slot wrapper '__hash__' of 'numpy.float64' objects>, '__str__': <slot wrapper '__str__' of 'numpy.float64' objects>, '__lt__': <slot wrapper '__lt__' of 'numpy.float64' objects>, '__le__': <slot wrapper '__le__' of 'numpy.float64' objects>, '__eq__': <slot wrapper '__eq__' of 'numpy.float64' objects>, '__ne__': <slot wrapper '__ne__' of 'numpy.float64' objects>, '__gt__': <slot wrapper '__gt__' of 'numpy.float64' objects>, '__ge__': <slot wrapper '__ge__' of 'numpy.float64' objects>, '__add__': <slot wrapper '__add__' of 'numpy.float64' objects>, '__radd__': <slot wrapper '__radd__' of 'numpy.float64' objects>, '__sub__': <slot wrapper '__sub__' of 'numpy.float64' objects>, '__rsub__': <slot wrapper '__rsub__' of 'numpy.float64' objects>, '__mul__': <slot wrapper '__mul__' of 'numpy.float64' objects>, '__rmul__': <slot wrapper '__rmul__' of 'numpy.float64' objects>, '__mod__': <slot wrapper '__mod__' of 'numpy.float64' objects>, '__rmod__': <slot wrapper '__rmod__' of 'numpy.float64' objects>, '__divmod__': <slot wrapper '__divmod__' of 'numpy.float64' objects>, '__rdivmod__': <slot wrapper '__rdivmod__' of 'numpy.float64' objects>, '__pow__': <slot wrapper '__pow__' of 'numpy.float64' objects>, '__rpow__': <slot wrapper '__rpow__' of 'numpy.float64' objects>, '__neg__': <slot wrapper '__neg__' of 'numpy.float64' objects>, '__pos__': <slot wrapper '__pos__' of 'numpy.float64' objects>, '__abs__': <slot wrapper '__abs__' of 'numpy.float64' objects>, '__bool__': <slot wrapper '__bool__' of 'numpy.float64' objects>, '__int__': <slot wrapper '__int__' of 'numpy.float64' objects>, '__float__': <slot wrapper '__float__' of 'numpy.float64' objects>, '__floordiv__': <slot wrapper '__floordiv__' of 'numpy.float64' objects>, '__rfloordiv__': <slot wrapper '__rfloordiv__' of 'numpy.float64' objects>, '__truediv__': <slot wrapper '__truediv__' of 'numpy.float64' objects>, '__rtruediv__': <slot wrapper '__rtruediv__' of 'numpy.float64' objects>, '__new__': <built-in method __new__ of type object at 0x118992560>, 'as_integer_ratio': <method 'as_integer_ratio' of 'numpy.float64' objects>, 'is_integer': <method 'is_integer' of 'numpy.float64' objects>, '__class_getitem__': <method '__class_getitem__' of 'numpy.float64' objects>, '__doc__': \"Double-precision floating-point number type, compatible with Python\\n    :class:`float` and C ``double``.\\n\\n    :Character code: ``'d'``\\n    :Canonical name: `numpy.double`\\n    :Alias on this platform (Darwin arm64): `numpy.float64`: 64-bit precision floating-point number type: sign bit, 11 bits exponent, 52 bits mantissa.\"}",
+                                "encoder__feature_name_combiner": "concat",
+                                "encoder__handle_unknown": "ignore",
+                                "encoder__max_categories": "None",
+                                "encoder__min_frequency": "None",
+                                "encoder__sparse_output": 1
+                            },
+                            "steps": [
+                                "('imputer', SimpleImputer(fill_value='brak', strategy='most_frequent'))",
+                                "('encoder', OneHotEncoder(handle_unknown='ignore'))"
+                            ]
+                        },
+                        [
+                            "gender",
+                            "cholesterol",
+                            "gluc",
+                            "smoke",
+                            "alco",
+                            "active"
+                        ]
+                    ]
+                ],
+                "verbose": 0,
+                "verbose_feature_names_out": 1,
+                "num": {
+                    "type": "<class 'sklearn.pipeline.Pipeline'>",
+                    "params": {
+                        "memory": "None",
+                        "steps": [
+                            [
+                                "imputer",
+                                {
+                                    "type": "<class 'sklearn.impute._base.SimpleImputer'>",
+                                    "params": {
+                                        "add_indicator": 0,
+                                        "copy": 1,
+                                        "fill_value": "None",
+                                        "keep_empty_features": 0,
+                                        "missing_values": NaN,
+                                        "strategy": "median"
+                                    },
+                                    "steps": []
+                                }
+                            ],
+                            [
+                                "scaler",
+                                {
+                                    "type": "<class 'sklearn.preprocessing._data.StandardScaler'>",
+                                    "params": {
+                                        "copy": 1,
+                                        "with_mean": 1,
+                                        "with_std": 1
+                                    },
+                                    "steps": []
+                                }
+                            ]
+                        ],
+                        "transform_input": "None",
+                        "verbose": 0,
+                        "imputer": {
+                            "type": "<class 'sklearn.impute._base.SimpleImputer'>",
+                            "params": {
+                                "add_indicator": 0,
+                                "copy": 1,
+                                "fill_value": "None",
+                                "keep_empty_features": 0,
+                                "missing_values": NaN,
+                                "strategy": "median"
+                            },
+                            "steps": []
+                        },
+                        "scaler": {
+                            "type": "<class 'sklearn.preprocessing._data.StandardScaler'>",
+                            "params": {
+                                "copy": 1,
+                                "with_mean": 1,
+                                "with_std": 1
+                            },
+                            "steps": []
+                        },
+                        "imputer__add_indicator": 0,
+                        "imputer__copy": 1,
+                        "imputer__fill_value": "None",
+                        "imputer__keep_empty_features": 0,
+                        "imputer__missing_values": NaN,
+                        "imputer__strategy": "median",
+                        "scaler__copy": 1,
+                        "scaler__with_mean": 1,
+                        "scaler__with_std": 1
+                    },
+                    "steps": [
+                        "('imputer', SimpleImputer(strategy='median'))",
+                        "('scaler', StandardScaler())"
+                    ]
+                },
+                "cat": {
+                    "type": "<class 'sklearn.pipeline.Pipeline'>",
+                    "params": {
+                        "memory": "None",
+                        "steps": [
+                            [
+                                "imputer",
+                                {
+                                    "type": "<class 'sklearn.impute._base.SimpleImputer'>",
+                                    "params": {
+                                        "add_indicator": 0,
+                                        "copy": 1,
+                                        "fill_value": "brak",
+                                        "keep_empty_features": 0,
+                                        "missing_values": NaN,
+                                        "strategy": "most_frequent"
+                                    },
+                                    "steps": []
+                                }
+                            ],
+                            [
+                                "encoder",
+                                {
+                                    "type": "<class 'sklearn.preprocessing._encoders.OneHotEncoder'>",
+                                    "params": {
+                                        "categories": "auto",
+                                        "drop": "None",
+                                        "dtype": "{'__repr__': <slot wrapper '__repr__' of 'numpy.float64' objects>, '__hash__': <slot wrapper '__hash__' of 'numpy.float64' objects>, '__str__': <slot wrapper '__str__' of 'numpy.float64' objects>, '__lt__': <slot wrapper '__lt__' of 'numpy.float64' objects>, '__le__': <slot wrapper '__le__' of 'numpy.float64' objects>, '__eq__': <slot wrapper '__eq__' of 'numpy.float64' objects>, '__ne__': <slot wrapper '__ne__' of 'numpy.float64' objects>, '__gt__': <slot wrapper '__gt__' of 'numpy.float64' objects>, '__ge__': <slot wrapper '__ge__' of 'numpy.float64' objects>, '__add__': <slot wrapper '__add__' of 'numpy.float64' objects>, '__radd__': <slot wrapper '__radd__' of 'numpy.float64' objects>, '__sub__': <slot wrapper '__sub__' of 'numpy.float64' objects>, '__rsub__': <slot wrapper '__rsub__' of 'numpy.float64' objects>, '__mul__': <slot wrapper '__mul__' of 'numpy.float64' objects>, '__rmul__': <slot wrapper '__rmul__' of 'numpy.float64' objects>, '__mod__': <slot wrapper '__mod__' of 'numpy.float64' objects>, '__rmod__': <slot wrapper '__rmod__' of 'numpy.float64' objects>, '__divmod__': <slot wrapper '__divmod__' of 'numpy.float64' objects>, '__rdivmod__': <slot wrapper '__rdivmod__' of 'numpy.float64' objects>, '__pow__': <slot wrapper '__pow__' of 'numpy.float64' objects>, '__rpow__': <slot wrapper '__rpow__' of 'numpy.float64' objects>, '__neg__': <slot wrapper '__neg__' of 'numpy.float64' objects>, '__pos__': <slot wrapper '__pos__' of 'numpy.float64' objects>, '__abs__': <slot wrapper '__abs__' of 'numpy.float64' objects>, '__bool__': <slot wrapper '__bool__' of 'numpy.float64' objects>, '__int__': <slot wrapper '__int__' of 'numpy.float64' objects>, '__float__': <slot wrapper '__float__' of 'numpy.float64' objects>, '__floordiv__': <slot wrapper '__floordiv__' of 'numpy.float64' objects>, '__rfloordiv__': <slot wrapper '__rfloordiv__' of 'numpy.float64' objects>, '__truediv__': <slot wrapper '__truediv__' of 'numpy.float64' objects>, '__rtruediv__': <slot wrapper '__rtruediv__' of 'numpy.float64' objects>, '__new__': <built-in method __new__ of type object at 0x118992560>, 'as_integer_ratio': <method 'as_integer_ratio' of 'numpy.float64' objects>, 'is_integer': <method 'is_integer' of 'numpy.float64' objects>, '__class_getitem__': <method '__class_getitem__' of 'numpy.float64' objects>, '__doc__': \"Double-precision floating-point number type, compatible with Python\\n    :class:`float` and C ``double``.\\n\\n    :Character code: ``'d'``\\n    :Canonical name: `numpy.double`\\n    :Alias on this platform (Darwin arm64): `numpy.float64`: 64-bit precision floating-point number type: sign bit, 11 bits exponent, 52 bits mantissa.\"}",
+                                        "feature_name_combiner": "concat",
+                                        "handle_unknown": "ignore",
+                                        "max_categories": "None",
+                                        "min_frequency": "None",
+                                        "sparse_output": 1
+                                    },
+                                    "steps": []
+                                }
+                            ]
+                        ],
+                        "transform_input": "None",
+                        "verbose": 0,
+                        "imputer": {
+                            "type": "<class 'sklearn.impute._base.SimpleImputer'>",
+                            "params": {
+                                "add_indicator": 0,
+                                "copy": 1,
+                                "fill_value": "brak",
+                                "keep_empty_features": 0,
+                                "missing_values": NaN,
+                                "strategy": "most_frequent"
+                            },
+                            "steps": []
+                        },
+                        "encoder": {
+                            "type": "<class 'sklearn.preprocessing._encoders.OneHotEncoder'>",
+                            "params": {
+                                "categories": "auto",
+                                "drop": "None",
+                                "dtype": "{'__repr__': <slot wrapper '__repr__' of 'numpy.float64' objects>, '__hash__': <slot wrapper '__hash__' of 'numpy.float64' objects>, '__str__': <slot wrapper '__str__' of 'numpy.float64' objects>, '__lt__': <slot wrapper '__lt__' of 'numpy.float64' objects>, '__le__': <slot wrapper '__le__' of 'numpy.float64' objects>, '__eq__': <slot wrapper '__eq__' of 'numpy.float64' objects>, '__ne__': <slot wrapper '__ne__' of 'numpy.float64' objects>, '__gt__': <slot wrapper '__gt__' of 'numpy.float64' objects>, '__ge__': <slot wrapper '__ge__' of 'numpy.float64' objects>, '__add__': <slot wrapper '__add__' of 'numpy.float64' objects>, '__radd__': <slot wrapper '__radd__' of 'numpy.float64' objects>, '__sub__': <slot wrapper '__sub__' of 'numpy.float64' objects>, '__rsub__': <slot wrapper '__rsub__' of 'numpy.float64' objects>, '__mul__': <slot wrapper '__mul__' of 'numpy.float64' objects>, '__rmul__': <slot wrapper '__rmul__' of 'numpy.float64' objects>, '__mod__': <slot wrapper '__mod__' of 'numpy.float64' objects>, '__rmod__': <slot wrapper '__rmod__' of 'numpy.float64' objects>, '__divmod__': <slot wrapper '__divmod__' of 'numpy.float64' objects>, '__rdivmod__': <slot wrapper '__rdivmod__' of 'numpy.float64' objects>, '__pow__': <slot wrapper '__pow__' of 'numpy.float64' objects>, '__rpow__': <slot wrapper '__rpow__' of 'numpy.float64' objects>, '__neg__': <slot wrapper '__neg__' of 'numpy.float64' objects>, '__pos__': <slot wrapper '__pos__' of 'numpy.float64' objects>, '__abs__': <slot wrapper '__abs__' of 'numpy.float64' objects>, '__bool__': <slot wrapper '__bool__' of 'numpy.float64' objects>, '__int__': <slot wrapper '__int__' of 'numpy.float64' objects>, '__float__': <slot wrapper '__float__' of 'numpy.float64' objects>, '__floordiv__': <slot wrapper '__floordiv__' of 'numpy.float64' objects>, '__rfloordiv__': <slot wrapper '__rfloordiv__' of 'numpy.float64' objects>, '__truediv__': <slot wrapper '__truediv__' of 'numpy.float64' objects>, '__rtruediv__': <slot wrapper '__rtruediv__' of 'numpy.float64' objects>, '__new__': <built-in method __new__ of type object at 0x118992560>, 'as_integer_ratio': <method 'as_integer_ratio' of 'numpy.float64' objects>, 'is_integer': <method 'is_integer' of 'numpy.float64' objects>, '__class_getitem__': <method '__class_getitem__' of 'numpy.float64' objects>, '__doc__': \"Double-precision floating-point number type, compatible with Python\\n    :class:`float` and C ``double``.\\n\\n    :Character code: ``'d'``\\n    :Canonical name: `numpy.double`\\n    :Alias on this platform (Darwin arm64): `numpy.float64`: 64-bit precision floating-point number type: sign bit, 11 bits exponent, 52 bits mantissa.\"}",
+                                "feature_name_combiner": "concat",
+                                "handle_unknown": "ignore",
+                                "max_categories": "None",
+                                "min_frequency": "None",
+                                "sparse_output": 1
+                            },
+                            "steps": []
+                        },
+                        "imputer__add_indicator": 0,
+                        "imputer__copy": 1,
+                        "imputer__fill_value": "brak",
+                        "imputer__keep_empty_features": 0,
+                        "imputer__missing_values": NaN,
+                        "imputer__strategy": "most_frequent",
+                        "encoder__categories": "auto",
+                        "encoder__drop": "None",
+                        "encoder__dtype": "{'__repr__': <slot wrapper '__repr__' of 'numpy.float64' objects>, '__hash__': <slot wrapper '__hash__' of 'numpy.float64' objects>, '__str__': <slot wrapper '__str__' of 'numpy.float64' objects>, '__lt__': <slot wrapper '__lt__' of 'numpy.float64' objects>, '__le__': <slot wrapper '__le__' of 'numpy.float64' objects>, '__eq__': <slot wrapper '__eq__' of 'numpy.float64' objects>, '__ne__': <slot wrapper '__ne__' of 'numpy.float64' objects>, '__gt__': <slot wrapper '__gt__' of 'numpy.float64' objects>, '__ge__': <slot wrapper '__ge__' of 'numpy.float64' objects>, '__add__': <slot wrapper '__add__' of 'numpy.float64' objects>, '__radd__': <slot wrapper '__radd__' of 'numpy.float64' objects>, '__sub__': <slot wrapper '__sub__' of 'numpy.float64' objects>, '__rsub__': <slot wrapper '__rsub__' of 'numpy.float64' objects>, '__mul__': <slot wrapper '__mul__' of 'numpy.float64' objects>, '__rmul__': <slot wrapper '__rmul__' of 'numpy.float64' objects>, '__mod__': <slot wrapper '__mod__' of 'numpy.float64' objects>, '__rmod__': <slot wrapper '__rmod__' of 'numpy.float64' objects>, '__divmod__': <slot wrapper '__divmod__' of 'numpy.float64' objects>, '__rdivmod__': <slot wrapper '__rdivmod__' of 'numpy.float64' objects>, '__pow__': <slot wrapper '__pow__' of 'numpy.float64' objects>, '__rpow__': <slot wrapper '__rpow__' of 'numpy.float64' objects>, '__neg__': <slot wrapper '__neg__' of 'numpy.float64' objects>, '__pos__': <slot wrapper '__pos__' of 'numpy.float64' objects>, '__abs__': <slot wrapper '__abs__' of 'numpy.float64' objects>, '__bool__': <slot wrapper '__bool__' of 'numpy.float64' objects>, '__int__': <slot wrapper '__int__' of 'numpy.float64' objects>, '__float__': <slot wrapper '__float__' of 'numpy.float64' objects>, '__floordiv__': <slot wrapper '__floordiv__' of 'numpy.float64' objects>, '__rfloordiv__': <slot wrapper '__rfloordiv__' of 'numpy.float64' objects>, '__truediv__': <slot wrapper '__truediv__' of 'numpy.float64' objects>, '__rtruediv__': <slot wrapper '__rtruediv__' of 'numpy.float64' objects>, '__new__': <built-in method __new__ of type object at 0x118992560>, 'as_integer_ratio': <method 'as_integer_ratio' of 'numpy.float64' objects>, 'is_integer': <method 'is_integer' of 'numpy.float64' objects>, '__class_getitem__': <method '__class_getitem__' of 'numpy.float64' objects>, '__doc__': \"Double-precision floating-point number type, compatible with Python\\n    :class:`float` and C ``double``.\\n\\n    :Character code: ``'d'``\\n    :Canonical name: `numpy.double`\\n    :Alias on this platform (Darwin arm64): `numpy.float64`: 64-bit precision floating-point number type: sign bit, 11 bits exponent, 52 bits mantissa.\"}",
+                        "encoder__feature_name_combiner": "concat",
+                        "encoder__handle_unknown": "ignore",
+                        "encoder__max_categories": "None",
+                        "encoder__min_frequency": "None",
+                        "encoder__sparse_output": 1
+                    },
+                    "steps": [
+                        "('imputer', SimpleImputer(fill_value='brak', strategy='most_frequent'))",
+                        "('encoder', OneHotEncoder(handle_unknown='ignore'))"
+                    ]
+                },
+                "num__memory": "None",
+                "num__steps": [
+                    [
+                        "imputer",
+                        {
+                            "type": "<class 'sklearn.impute._base.SimpleImputer'>",
+                            "params": {
+                                "add_indicator": 0,
+                                "copy": 1,
+                                "fill_value": "None",
+                                "keep_empty_features": 0,
+                                "missing_values": NaN,
+                                "strategy": "median"
+                            },
+                            "steps": []
+                        }
+                    ],
+                    [
+                        "scaler",
+                        {
+                            "type": "<class 'sklearn.preprocessing._data.StandardScaler'>",
+                            "params": {
+                                "copy": 1,
+                                "with_mean": 1,
+                                "with_std": 1
+                            },
+                            "steps": []
+                        }
+                    ]
+                ],
+                "num__transform_input": "None",
+                "num__verbose": 0,
+                "num__imputer": {
+                    "type": "<class 'sklearn.impute._base.SimpleImputer'>",
+                    "params": {
+                        "add_indicator": 0,
+                        "copy": 1,
+                        "fill_value": "None",
+                        "keep_empty_features": 0,
+                        "missing_values": NaN,
+                        "strategy": "median"
+                    },
+                    "steps": []
+                },
+                "num__scaler": {
+                    "type": "<class 'sklearn.preprocessing._data.StandardScaler'>",
+                    "params": {
+                        "copy": 1,
+                        "with_mean": 1,
+                        "with_std": 1
+                    },
+                    "steps": []
+                },
+                "num__imputer__add_indicator": 0,
+                "num__imputer__copy": 1,
+                "num__imputer__fill_value": "None",
+                "num__imputer__keep_empty_features": 0,
+                "num__imputer__missing_values": NaN,
+                "num__imputer__strategy": "median",
+                "num__scaler__copy": 1,
+                "num__scaler__with_mean": 1,
+                "num__scaler__with_std": 1,
+                "cat__memory": "None",
+                "cat__steps": [
+                    [
+                        "imputer",
+                        {
+                            "type": "<class 'sklearn.impute._base.SimpleImputer'>",
+                            "params": {
+                                "add_indicator": 0,
+                                "copy": 1,
+                                "fill_value": "brak",
+                                "keep_empty_features": 0,
+                                "missing_values": NaN,
+                                "strategy": "most_frequent"
+                            },
+                            "steps": []
+                        }
+                    ],
+                    [
+                        "encoder",
+                        {
+                            "type": "<class 'sklearn.preprocessing._encoders.OneHotEncoder'>",
+                            "params": {
+                                "categories": "auto",
+                                "drop": "None",
+                                "dtype": "{'__repr__': <slot wrapper '__repr__' of 'numpy.float64' objects>, '__hash__': <slot wrapper '__hash__' of 'numpy.float64' objects>, '__str__': <slot wrapper '__str__' of 'numpy.float64' objects>, '__lt__': <slot wrapper '__lt__' of 'numpy.float64' objects>, '__le__': <slot wrapper '__le__' of 'numpy.float64' objects>, '__eq__': <slot wrapper '__eq__' of 'numpy.float64' objects>, '__ne__': <slot wrapper '__ne__' of 'numpy.float64' objects>, '__gt__': <slot wrapper '__gt__' of 'numpy.float64' objects>, '__ge__': <slot wrapper '__ge__' of 'numpy.float64' objects>, '__add__': <slot wrapper '__add__' of 'numpy.float64' objects>, '__radd__': <slot wrapper '__radd__' of 'numpy.float64' objects>, '__sub__': <slot wrapper '__sub__' of 'numpy.float64' objects>, '__rsub__': <slot wrapper '__rsub__' of 'numpy.float64' objects>, '__mul__': <slot wrapper '__mul__' of 'numpy.float64' objects>, '__rmul__': <slot wrapper '__rmul__' of 'numpy.float64' objects>, '__mod__': <slot wrapper '__mod__' of 'numpy.float64' objects>, '__rmod__': <slot wrapper '__rmod__' of 'numpy.float64' objects>, '__divmod__': <slot wrapper '__divmod__' of 'numpy.float64' objects>, '__rdivmod__': <slot wrapper '__rdivmod__' of 'numpy.float64' objects>, '__pow__': <slot wrapper '__pow__' of 'numpy.float64' objects>, '__rpow__': <slot wrapper '__rpow__' of 'numpy.float64' objects>, '__neg__': <slot wrapper '__neg__' of 'numpy.float64' objects>, '__pos__': <slot wrapper '__pos__' of 'numpy.float64' objects>, '__abs__': <slot wrapper '__abs__' of 'numpy.float64' objects>, '__bool__': <slot wrapper '__bool__' of 'numpy.float64' objects>, '__int__': <slot wrapper '__int__' of 'numpy.float64' objects>, '__float__': <slot wrapper '__float__' of 'numpy.float64' objects>, '__floordiv__': <slot wrapper '__floordiv__' of 'numpy.float64' objects>, '__rfloordiv__': <slot wrapper '__rfloordiv__' of 'numpy.float64' objects>, '__truediv__': <slot wrapper '__truediv__' of 'numpy.float64' objects>, '__rtruediv__': <slot wrapper '__rtruediv__' of 'numpy.float64' objects>, '__new__': <built-in method __new__ of type object at 0x118992560>, 'as_integer_ratio': <method 'as_integer_ratio' of 'numpy.float64' objects>, 'is_integer': <method 'is_integer' of 'numpy.float64' objects>, '__class_getitem__': <method '__class_getitem__' of 'numpy.float64' objects>, '__doc__': \"Double-precision floating-point number type, compatible with Python\\n    :class:`float` and C ``double``.\\n\\n    :Character code: ``'d'``\\n    :Canonical name: `numpy.double`\\n    :Alias on this platform (Darwin arm64): `numpy.float64`: 64-bit precision floating-point number type: sign bit, 11 bits exponent, 52 bits mantissa.\"}",
+                                "feature_name_combiner": "concat",
+                                "handle_unknown": "ignore",
+                                "max_categories": "None",
+                                "min_frequency": "None",
+                                "sparse_output": 1
+                            },
+                            "steps": []
+                        }
+                    ]
+                ],
+                "cat__transform_input": "None",
+                "cat__verbose": 0,
+                "cat__imputer": {
+                    "type": "<class 'sklearn.impute._base.SimpleImputer'>",
+                    "params": {
+                        "add_indicator": 0,
+                        "copy": 1,
+                        "fill_value": "brak",
+                        "keep_empty_features": 0,
+                        "missing_values": NaN,
+                        "strategy": "most_frequent"
+                    },
+                    "steps": []
+                },
+                "cat__encoder": {
+                    "type": "<class 'sklearn.preprocessing._encoders.OneHotEncoder'>",
+                    "params": {
+                        "categories": "auto",
+                        "drop": "None",
+                        "dtype": "{'__repr__': <slot wrapper '__repr__' of 'numpy.float64' objects>, '__hash__': <slot wrapper '__hash__' of 'numpy.float64' objects>, '__str__': <slot wrapper '__str__' of 'numpy.float64' objects>, '__lt__': <slot wrapper '__lt__' of 'numpy.float64' objects>, '__le__': <slot wrapper '__le__' of 'numpy.float64' objects>, '__eq__': <slot wrapper '__eq__' of 'numpy.float64' objects>, '__ne__': <slot wrapper '__ne__' of 'numpy.float64' objects>, '__gt__': <slot wrapper '__gt__' of 'numpy.float64' objects>, '__ge__': <slot wrapper '__ge__' of 'numpy.float64' objects>, '__add__': <slot wrapper '__add__' of 'numpy.float64' objects>, '__radd__': <slot wrapper '__radd__' of 'numpy.float64' objects>, '__sub__': <slot wrapper '__sub__' of 'numpy.float64' objects>, '__rsub__': <slot wrapper '__rsub__' of 'numpy.float64' objects>, '__mul__': <slot wrapper '__mul__' of 'numpy.float64' objects>, '__rmul__': <slot wrapper '__rmul__' of 'numpy.float64' objects>, '__mod__': <slot wrapper '__mod__' of 'numpy.float64' objects>, '__rmod__': <slot wrapper '__rmod__' of 'numpy.float64' objects>, '__divmod__': <slot wrapper '__divmod__' of 'numpy.float64' objects>, '__rdivmod__': <slot wrapper '__rdivmod__' of 'numpy.float64' objects>, '__pow__': <slot wrapper '__pow__' of 'numpy.float64' objects>, '__rpow__': <slot wrapper '__rpow__' of 'numpy.float64' objects>, '__neg__': <slot wrapper '__neg__' of 'numpy.float64' objects>, '__pos__': <slot wrapper '__pos__' of 'numpy.float64' objects>, '__abs__': <slot wrapper '__abs__' of 'numpy.float64' objects>, '__bool__': <slot wrapper '__bool__' of 'numpy.float64' objects>, '__int__': <slot wrapper '__int__' of 'numpy.float64' objects>, '__float__': <slot wrapper '__float__' of 'numpy.float64' objects>, '__floordiv__': <slot wrapper '__floordiv__' of 'numpy.float64' objects>, '__rfloordiv__': <slot wrapper '__rfloordiv__' of 'numpy.float64' objects>, '__truediv__': <slot wrapper '__truediv__' of 'numpy.float64' objects>, '__rtruediv__': <slot wrapper '__rtruediv__' of 'numpy.float64' objects>, '__new__': <built-in method __new__ of type object at 0x118992560>, 'as_integer_ratio': <method 'as_integer_ratio' of 'numpy.float64' objects>, 'is_integer': <method 'is_integer' of 'numpy.float64' objects>, '__class_getitem__': <method '__class_getitem__' of 'numpy.float64' objects>, '__doc__': \"Double-precision floating-point number type, compatible with Python\\n    :class:`float` and C ``double``.\\n\\n    :Character code: ``'d'``\\n    :Canonical name: `numpy.double`\\n    :Alias on this platform (Darwin arm64): `numpy.float64`: 64-bit precision floating-point number type: sign bit, 11 bits exponent, 52 bits mantissa.\"}",
+                        "feature_name_combiner": "concat",
+                        "handle_unknown": "ignore",
+                        "max_categories": "None",
+                        "min_frequency": "None",
+                        "sparse_output": 1
+                    },
+                    "steps": []
+                },
+                "cat__imputer__add_indicator": 0,
+                "cat__imputer__copy": 1,
+                "cat__imputer__fill_value": "brak",
+                "cat__imputer__keep_empty_features": 0,
+                "cat__imputer__missing_values": NaN,
+                "cat__imputer__strategy": "most_frequent",
+                "cat__encoder__categories": "auto",
+                "cat__encoder__drop": "None",
+                "cat__encoder__dtype": "{'__repr__': <slot wrapper '__repr__' of 'numpy.float64' objects>, '__hash__': <slot wrapper '__hash__' of 'numpy.float64' objects>, '__str__': <slot wrapper '__str__' of 'numpy.float64' objects>, '__lt__': <slot wrapper '__lt__' of 'numpy.float64' objects>, '__le__': <slot wrapper '__le__' of 'numpy.float64' objects>, '__eq__': <slot wrapper '__eq__' of 'numpy.float64' objects>, '__ne__': <slot wrapper '__ne__' of 'numpy.float64' objects>, '__gt__': <slot wrapper '__gt__' of 'numpy.float64' objects>, '__ge__': <slot wrapper '__ge__' of 'numpy.float64' objects>, '__add__': <slot wrapper '__add__' of 'numpy.float64' objects>, '__radd__': <slot wrapper '__radd__' of 'numpy.float64' objects>, '__sub__': <slot wrapper '__sub__' of 'numpy.float64' objects>, '__rsub__': <slot wrapper '__rsub__' of 'numpy.float64' objects>, '__mul__': <slot wrapper '__mul__' of 'numpy.float64' objects>, '__rmul__': <slot wrapper '__rmul__' of 'numpy.float64' objects>, '__mod__': <slot wrapper '__mod__' of 'numpy.float64' objects>, '__rmod__': <slot wrapper '__rmod__' of 'numpy.float64' objects>, '__divmod__': <slot wrapper '__divmod__' of 'numpy.float64' objects>, '__rdivmod__': <slot wrapper '__rdivmod__' of 'numpy.float64' objects>, '__pow__': <slot wrapper '__pow__' of 'numpy.float64' objects>, '__rpow__': <slot wrapper '__rpow__' of 'numpy.float64' objects>, '__neg__': <slot wrapper '__neg__' of 'numpy.float64' objects>, '__pos__': <slot wrapper '__pos__' of 'numpy.float64' objects>, '__abs__': <slot wrapper '__abs__' of 'numpy.float64' objects>, '__bool__': <slot wrapper '__bool__' of 'numpy.float64' objects>, '__int__': <slot wrapper '__int__' of 'numpy.float64' objects>, '__float__': <slot wrapper '__float__' of 'numpy.float64' objects>, '__floordiv__': <slot wrapper '__floordiv__' of 'numpy.float64' objects>, '__rfloordiv__': <slot wrapper '__rfloordiv__' of 'numpy.float64' objects>, '__truediv__': <slot wrapper '__truediv__' of 'numpy.float64' objects>, '__rtruediv__': <slot wrapper '__rtruediv__' of 'numpy.float64' objects>, '__new__': <built-in method __new__ of type object at 0x118992560>, 'as_integer_ratio': <method 'as_integer_ratio' of 'numpy.float64' objects>, 'is_integer': <method 'is_integer' of 'numpy.float64' objects>, '__class_getitem__': <method '__class_getitem__' of 'numpy.float64' objects>, '__doc__': \"Double-precision floating-point number type, compatible with Python\\n    :class:`float` and C ``double``.\\n\\n    :Character code: ``'d'``\\n    :Canonical name: `numpy.double`\\n    :Alias on this platform (Darwin arm64): `numpy.float64`: 64-bit precision floating-point number type: sign bit, 11 bits exponent, 52 bits mantissa.\"}",
+                "cat__encoder__feature_name_combiner": "concat",
+                "cat__encoder__handle_unknown": "ignore",
+                "cat__encoder__max_categories": "None",
+                "cat__encoder__min_frequency": "None",
+                "cat__encoder__sparse_output": 1
+            },
+            "steps": []
+        },
+        "resampler": "None",
+        "feature_selector": "None",
+        "feature_selection_method": "Brak",
+        "numeric_features": [
+            "age",
+            "height",
+            "weight",
+            "ap_hi",
+            "ap_lo",
+            "bmi",
+            "pulse_pressure"
+        ],
+        "categorical_features": [
+            "gender",
+            "cholesterol",
+            "gluc",
+            "smoke",
+            "alco",
+            "active"
+        ],
+        "scaling_method": "StandardScaler",
+        "balancing_method": "Brak",
+        "missing_strategy_num": "median",
+        "missing_strategy_cat": "most_frequent"
+    },
+    "training_parameters": {
+        "optimization_method": "RandomizedSearchCV",
+        "scoring_metric": "roc_auc",
+        "cv_folds": 5,
+        "calibration": 0
+    },
+    "data_shapes": {
+        "X_train_shape": [
+            56000,
+            13
+        ],
+        "X_test_shape": [
+            14000,
+            13
+        ],
+        "y_train_distribution": {
+            "0": 28017,
+            "1": 27983
+        },
+        "y_test_distribution": {
+            "0": 7004,
+            "1": 6996
+        }
+    }
+}

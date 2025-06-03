@@ -1,0 +1,1 @@
+{"Model": "SVM", "Accuracy": 0.7314285714285714, "ROC-AUC": 0.7886794616096201, "F1-Score": 0.7221401123263376, "Precision": 0.7475520195838433, "Recall": 0.698399085191538, "MCC": 0.4638394706490343, "Params": "{'classifier__kernel': 'rbf', 'classifier__gamma': 'auto', 'classifier__C': 10}"}

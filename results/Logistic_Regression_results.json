@@ -1,0 +1,1 @@
+{"Model": "Logistic Regression", "Accuracy": 0.714, "ROC-AUC": 0.7788956624965429, "F1-Score": 0.701861504095309, "Precision": 0.7325147653092944, "Recall": 0.6736706689536878, "MCC": 0.42935971800970346, "Params": "{'classifier__solver': 'liblinear', 'classifier__penalty': 'l2', 'classifier__C': 10}"}

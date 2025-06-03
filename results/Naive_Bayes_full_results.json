@@ -1,0 +1,90 @@
+{
+    "metadata": {
+        "model_name": "Naive Bayes",
+        "timestamp": "2025-06-02 22:42:01",
+        "training_time_seconds": 0.24,
+        "preprocessing": {
+            "numeric_features": [
+                "age",
+                "height",
+                "weight",
+                "ap_hi",
+                "ap_lo",
+                "bmi",
+                "pulse_pressure"
+            ],
+            "categorical_features": [
+                "gender",
+                "cholesterol",
+                "gluc",
+                "smoke",
+                "alco",
+                "active"
+            ],
+            "scaling_method": "StandardScaler",
+            "balancing_method": "Brak",
+            "missing_strategy_num": "median",
+            "missing_strategy_cat": "most_frequent",
+            "feature_selection_method": "Brak",
+            "test_size": 0.2
+        },
+        "training_parameters": {
+            "optimization_method": "RandomizedSearchCV",
+            "scoring_metric": "roc_auc",
+            "cv_folds": 5,
+            "calibration": false
+        },
+        "model_parameters": {
+            "priors": null,
+            "var_smoothing": 1e-09
+        },
+        "environment": {
+            "python_version": "3.9.6",
+            "libraries": {
+                "sklearn": "1.6.1",
+                "pandas": "2.2.3",
+                "numpy": "2.0.2",
+                "streamlit": "1.22.0"
+            }
+        }
+    },
+    "performance_metrics": {
+        "Model": "Naive Bayes",
+        "Accuracy": 0.5961428571428572,
+        "ROC-AUC": 0.6735113831873905,
+        "F1-Score": 0.473752792256143,
+        "Precision": 0.6790288153681964,
+        "Recall": 0.3637793024585477,
+        "MCC": 0.21684081968613653,
+        "Params": "Brak optymalizacji"
+    },
+    "feature_importances": null,
+    "confusion_matrix": [
+        [
+            5801,
+            1203
+        ],
+        [
+            4451,
+            2545
+        ]
+    ],
+    "training_parameters": {
+        "X_train_shape": [
+            56000,
+            13
+        ],
+        "y_train_distribution": {
+            "0": 28017,
+            "1": 27983
+        },
+        "X_test_shape": [
+            14000,
+            13
+        ],
+        "y_test_distribution": {
+            "0": 7004,
+            "1": 6996
+        }
+    }
+}

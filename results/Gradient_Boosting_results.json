@@ -1,0 +1,1 @@
+{"Model": "Gradient Boosting", "Accuracy": 0.7346428571428572, "ROC-AUC": 0.800603628768532, "F1-Score": 0.7231124692554223, "Precision": 0.7554897990967139, "Recall": 0.6933962264150944, "MCC": 0.4708519930121766, "Params": "{'classifier__subsample': 0.8, 'classifier__n_estimators': 100, 'classifier__max_depth': 5, 'classifier__learning_rate': 0.05}"}

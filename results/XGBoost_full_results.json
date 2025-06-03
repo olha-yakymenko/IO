@@ -1,0 +1,94 @@
+{
+    "metadata": {
+        "model_name": "XGBoost",
+        "timestamp": "2025-06-02 21:37:06",
+        "training_time_seconds": 13.19,
+        "preprocessing": {
+            "numeric_features": [
+                "age",
+                "height",
+                "weight",
+                "ap_hi",
+                "ap_lo",
+                "bmi",
+                "pulse_pressure"
+            ],
+            "categorical_features": [
+                "gender",
+                "cholesterol",
+                "gluc",
+                "smoke",
+                "alco",
+                "active"
+            ],
+            "scaling_method": "StandardScaler",
+            "balancing_method": "Brak",
+            "missing_strategy_num": "median",
+            "missing_strategy_cat": "most_frequent",
+            "feature_selection_method": "Brak",
+            "test_size": 0.2
+        },
+        "training_parameters": {
+            "optimization_method": "RandomizedSearchCV",
+            "scoring_metric": "roc_auc",
+            "cv_folds": 5,
+            "calibration": false
+        },
+        "model_parameters": {
+            "classifier__subsample": 0.8,
+            "classifier__scale_pos_weight": 1,
+            "classifier__n_estimators": 200,
+            "classifier__max_depth": 3,
+            "classifier__learning_rate": 0.1,
+            "classifier__colsample_bytree": 1.0
+        },
+        "environment": {
+            "python_version": "3.9.6",
+            "libraries": {
+                "sklearn": "1.6.1",
+                "pandas": "2.2.3",
+                "numpy": "2.0.2",
+                "streamlit": "1.22.0"
+            }
+        }
+    },
+    "performance_metrics": {
+        "Model": "XGBoost",
+        "Accuracy": 0.7356428571428572,
+        "ROC-AUC": 0.8006688838918805,
+        "F1-Score": 0.7256282897175477,
+        "Precision": 0.7537347913137225,
+        "Recall": 0.6995425957690109,
+        "MCC": 0.4724853379976129,
+        "Params": "{'classifier__subsample': 0.8, 'classifier__scale_pos_weight': 1, 'classifier__n_estimators': 200, 'classifier__max_depth': 3, 'classifier__learning_rate': 0.1, 'classifier__colsample_bytree': 1.0}"
+    },
+    "feature_importances": null,
+    "confusion_matrix": [
+        [
+            5405,
+            1599
+        ],
+        [
+            2102,
+            4894
+        ]
+    ],
+    "training_parameters": {
+        "X_train_shape": [
+            56000,
+            13
+        ],
+        "y_train_distribution": {
+            "0": 28017,
+            "1": 27983
+        },
+        "X_test_shape": [
+            14000,
+            13
+        ],
+        "y_test_distribution": {
+            "0": 7004,
+            "1": 6996
+        }
+    }
+}

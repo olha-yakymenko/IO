@@ -1,0 +1,1 @@
+{"Model": "Extra Trees", "Accuracy": 0.7231428571428572, "ROC-AUC": 0.7849314705898679, "F1-Score": 0.7204673301601039, "Precision": 0.7270742358078602, "Recall": 0.7139794168096055, "MCC": 0.44635215451376, "Params": "{'classifier__n_estimators': 200, 'classifier__min_samples_split': 10, 'classifier__min_samples_leaf': 1, 'classifier__max_depth': None}"}

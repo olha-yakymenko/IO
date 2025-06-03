@@ -1,0 +1,95 @@
+{
+    "metadata": {
+        "model_name": "MLP (Neural Network)",
+        "timestamp": "2025-06-02 23:59:20",
+        "training_time_seconds": 87.51,
+        "preprocessing": {
+            "numeric_features": [
+                "age",
+                "height",
+                "weight",
+                "ap_hi",
+                "ap_lo",
+                "bmi",
+                "pulse_pressure"
+            ],
+            "categorical_features": [
+                "gender",
+                "cholesterol",
+                "gluc",
+                "smoke",
+                "alco",
+                "active"
+            ],
+            "scaling_method": "StandardScaler",
+            "balancing_method": "Brak",
+            "missing_strategy_num": "median",
+            "missing_strategy_cat": "most_frequent",
+            "feature_selection_method": "Brak",
+            "test_size": 0.2
+        },
+        "training_parameters": {
+            "optimization_method": "RandomizedSearchCV",
+            "scoring_metric": "roc_auc",
+            "cv_folds": 5,
+            "calibration": 0
+        },
+        "model_parameters": {
+            "classifier__learning_rate": "constant",
+            "classifier__hidden_layer_sizes": [
+                50,
+                50
+            ],
+            "classifier__alpha": 0.0001,
+            "classifier__activation": "tanh"
+        },
+        "environment": {
+            "python_version": "3.9.6",
+            "libraries": {
+                "sklearn": "1.6.1",
+                "pandas": "2.2.3",
+                "numpy": "2.0.2",
+                "streamlit": "1.22.0"
+            }
+        }
+    },
+    "performance_metrics": {
+        "Model": "MLP (Neural Network)",
+        "Accuracy": 0.7306428571428571,
+        "ROC-AUC": 0.7973874236367098,
+        "F1-Score": 0.7261636772928618,
+        "Precision": 0.7380073800738007,
+        "Recall": 0.714694110920526,
+        "MCC": 0.46150588932330716,
+        "Params": "{'classifier__learning_rate': 'constant', 'classifier__hidden_layer_sizes': (50, 50), 'classifier__alpha': 0.0001, 'classifier__activation': 'tanh'}"
+    },
+    "feature_importances": "None",
+    "confusion_matrix": [
+        [
+            5229,
+            1775
+        ],
+        [
+            1996,
+            5000
+        ]
+    ],
+    "training_parameters": {
+        "X_train_shape": [
+            56000,
+            13
+        ],
+        "y_train_distribution": {
+            "0": 28017,
+            "1": 27983
+        },
+        "X_test_shape": [
+            14000,
+            13
+        ],
+        "y_test_distribution": {
+            "0": 7004,
+            "1": 6996
+        }
+    }
+}

@@ -1,0 +1,1 @@
+{"Model": "CatBoost", "Accuracy": 0.734, "ROC-AUC": 0.8009976901216947, "F1-Score": 0.7241072751518743, "Precision": 0.7516148877268533, "Recall": 0.6985420240137221, "MCC": 0.4691481806942737, "Params": "{'classifier__learning_rate': 0.05, 'classifier__iterations': 300, 'classifier__depth': 6}"}

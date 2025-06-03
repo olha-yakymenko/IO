@@ -1,0 +1,266 @@
+# **DOKUMENTACJA FUNKCJI APLIKACJI ANALIZY DANYCH KARDIOLOGICZNYCH**  
+
+## **1. Wczytywanie danych (`load_data()`)**  
+
+### **Opis funkcji**  
+Funkcja `load_data()` odpowiada za wczytanie danych z pliku CSV (domyślnego lub dostarczonego przez użytkownika) oraz wykonanie wstępnego przetwarzania danych.  
+
+### **Szczegóły działania**  
+1. **Wczytywanie danych**:  
+   - Jeśli użytkownik nie przesłał własnego pliku (`uploaded_file is None`), funkcja próbuje wczytać domyślny plik `cardio_train.csv`.  
+   - Jeśli plik nie istnieje, wyświetlany jest komunikat ostrzegawczy.  
+   - Dane są wczytywane z separatorem `;`, a jeśli to nie zadziała, próbuje wczytać z domyślnym separatorem (`,`).  
+
+2. **Przetwarzanie wstępne**:  
+   - **Konwersja wieku**:  
+     - Kolumna `age` jest konwertowana z dni na lata (`data['age'] = data['age'] // 365`).  
+     - *Dlaczego?* Wartości w dniach są trudne do interpretacji, a wiek w latach jest bardziej naturalny dla analizy medycznej.  
+   - **Mapowanie płci**:  
+     - `1 → "kobieta"`, `2 → "mężczyzna"` – zwiększa czytelność danych.  
+   - **Mapowanie cholesterolu i glukozy**:  
+     - Wartości liczbowe są zamieniane na opisowe (`1: "normalny"`, `2: "podwyższony"`, `3: "wysoki"`).  
+   - **Obliczanie BMI**:  
+     - `bmi = weight / (height/100)^2` – standardowy wskaźnik masy ciała, istotny w diagnostyce kardiologicznej.  
+   - **Obliczanie ciśnienia tętna**:  
+     - `pulse_pressure = ap_hi - ap_lo` – różnica między ciśnieniem skurczowym a rozkurczowym, ważny parametr w ocenie zdrowia serca.  
+
+### **Dlaczego to jest potrzebne?**  
+- **Ujednolicenie danych**: Zamiana wartości liczbowych na kategorie ułatwia analizę i wizualizację.  
+- **Obliczanie dodatkowych wskaźników**: BMI i ciśnienie tętna są kluczowe w ocenie ryzyka chorób serca.  
+
+---
+
+## **2. Eksploracyjna analiza danych (`perform_eda()`)**  
+
+### **Opis funkcji**  
+Funkcja ta przeprowadza kompleksową analizę danych, generując statystyki opisowe i wizualizacje.  
+
+### **Szczegóły działania**  
+1. **Podstawowe informacje**:  
+   - Wyświetla liczbę pacjentów, cech i brakujących wartości.  
+   - *Dlaczego?* Pozwala szybko ocenić jakość i rozmiar danych.  
+
+2. **Analiza wartości brakujących**:  
+   - Generuje wykres słupkowy brakujących wartości.  
+   - *Dlaczego?* Pomaga zidentyfikować problemy z danymi przed modelowaniem.  
+
+3. **Wykrywanie outlierów**:  
+   - Boxploty dla cech numerycznych (`age`, `height`, `weight`, `ap_hi`, `ap_lo`, `bmi`, `pulse_pressure`).  
+   - *Dlaczego?* Wartości odstające mogą zakłócać działanie modeli.  
+
+4. **Rozkład zmiennej docelowej (`cardio`)**:  
+   - Wykres kołowy pokazujący proporcje chorych/zdrowych.  
+   - *Dlaczego?* Jeśli klasy są niezbalansowane, może być potrzebne oversampling/undersampling.  
+
+5. **Rozkłady cech numerycznych i kategorycznych**:  
+   - Histogramy i boxploty dla cech numerycznych.  
+   - Wykresy słupkowe dla cech kategorycznych (`gender`, `cholesterol`, `gluc`, `smoke`, `alco`, `active`).  
+   - *Dlaczego?* Pozwala zrozumieć rozkład danych i potencjalne zależności.  
+
+6. **Macierz korelacji**:  
+   - Heatmapa pokazująca korelacje między cechami numerycznymi.  
+   - *Dlaczego?* Wysoka korelacja między cechami może wskazywać na redundancję.  
+
+7. **Interaktywna analiza zależności**:  
+   - Użytkownik może wybrać osie X i Y oraz kolorowanie.  
+   - *Dlaczego?* Umożliwia eksplorację zależności między wybranymi zmiennymi.  
+
+### **Dlaczego to jest potrzebne?**  
+- **Zrozumienie danych**: EDA jest kluczowe przed modelowaniem, aby uniknąć błędów (np. nierównowaga klas, brakujące dane).  
+- **Wybór odpowiednich metod preprocessingowych**: Na podstawie EDA można zdecydować, czy potrzebne jest skalowanie, usuwanie outlierów itp.  
+
+---
+
+## **3. Przygotowanie danych (`perform_preprocessing()`)**  
+
+### **Opis funkcji**  
+Przygotowuje dane do modelowania, w tym:  
+- Imputację brakujących wartości  
+- Skalowanie  
+- Kodowanie kategorii  
+- Balansowanie klas  
+- Selekcję cech  
+
+### **Szczegóły działania**  
+1. **Podział na zbiór treningowy i testowy**:  
+   - `train_test_split()` z losowym ziarnem i stratifikacją (aby zachować proporcje klas).  
+   - *Dlaczego?* Stratyfikacja zapewnia, że w obu zbiorach są podobne proporcje chorych/zdrowych.  
+
+2. **Obsługa wartości brakujących**:  
+   - Dla danych numerycznych: `mean`, `median`, `constant`, `usun`.  
+   - Dla kategorycznych: `most_frequent`, `constant`, `usun`.  
+   - *Dlaczego?* Różne strategie są potrzebne w zależności od charakteru danych.  
+
+3. **Skalowanie cech**:  
+   - `StandardScaler` (średnia=0, odchylenie=1)  
+   - `MinMaxScaler` (wartości w zakresie [0, 1])  
+   - `RobustScaler` (odporny na outliery)  
+   - *Dlaczego?* Algorytmy takie jak SVM i KNN wymagają skalowania danych.  
+
+4. **Kodowanie kategorii**:  
+   - OneHotEncoder – tworzy kolumny binarne (np. gender_male, gender_female).
+   - OrdinalEncoder – przypisuje wartości numeryczne (np. cholesterol: 0,1,2).
+   - TargetEncoder – zamienia kategorię na średnią wartości docelowej (cardio), przydatne przy dużej liczbie kategorii.
+   - Dlaczego? Modele nie rozumieją danych tekstowych — potrzebują wartości numerycznych.
+
+
+5. BALANSOWANIE KLAS
+--------------------
+OVERSAMPLING:
+- SMOTE
+- ADASYN
+- BorderlineSMOTE
+
+UNDERSAMPLING:
+- RandomUnderSampler
+- ClusterCentroids
+- NearMiss
+
+HYBRYDOWE:
+- SMOTEENN
+- TomekLinks (czyszczenie)
+
+Cel: uniknięcie problemów związanych z niezbalansowanymi klasami (np. 90/10).
+
+6. **Selekcja cech**:  
+   - SelectFromModel (Lasso) → wybór cech na podstawie ważności
+    - RFE (Recursive Feature Elimination)
+    - SelectKBest (chi2) → wybór K najlepszych
+    - PCA → redukcja wymiarowości
+    - Permutation Importance → wpływ przetasowania na wynik
+
+Cel:
+- Zmniejszenie liczby cech
+- Szybszy trening
+- Lepsza interpretacja
+- Redukcja overfittingu
+
+Inne elementy
+- ColumnTransformer → różne transformatory dla różnych typów cech
+- Pipeline → łączenie kroków (imputer → scaler → encoder)
+- session_state → przechowywanie przetworzonych danych
+
+
+---
+
+## **4. Modelowanie (`perform_modeling()`)**  
+
+### **Opis funkcji**  
+Trenuje i porównuje różne modele uczenia maszynowego, optymalizuje hiperparametry i zapisuje wyniki.  
+
+### **Dostępne modele i ich zastosowanie**
+
+| Model | Zalety | Wady | Dlaczego został wybrany? |
+|-------|--------|------|--------------------------|
+| **Random Forest** | Odporny na overfitting, działa z różnymi typami danych | Wolniejszy niż boosting | Dobre wyniki w klasyfikacji medycznej |
+| **XGBoost** | Szybki, wysoka dokładność, obsługuje brakujące dane | Wrażliwy na przetrenowanie | Często najlepszy w benchmarkach |
+| **LightGBM** | Bardzo szybki, efektywny na dużych danych | Mniej dokładny na małych zbiorach | Lepszy niż XGBoost w niektórych przypadkach |
+| **Gradient Boosting** | Wysoka dokładność, dobre dopasowanie do złożonych wzorców | Wolniejszy trening niż XGBoost/LightGBM | Alternatywa dla innych metod boosting |
+| **Logistic Regression** | Interpretowalny, szybki, dobre prawdopodobieństwa | Słaby przy nieliniowych zależnościach | Jako baseline model |
+| **K-NN** | Prosty, nie wymaga treningu, adaptuje się do nowych danych | Wrażliwy na wymiarowość i outliery | Dla porównania z bardziej zaawansowanymi modelami |
+| **AdaBoost** | Dobry przy słabych klasyfikatorach, zmniejsza bias | Wrażliwy na outliery i szum | Jako przykład ensemble method |
+| **CatBoost** | Automatycznie obsługuje kategorie, odporny na overfitting | Wymaga więcej pamięci niż LightGBM | Dobre wyniki przy danych kategorycznych |
+| **Extra Trees** | Bardzo szybki, mniej podatny na overfitting niż RF | Wyższa wariancja niż RF | Szybsza alternatywa dla Random Forest |
+| **Naive Bayes** | Bardzo szybki, działa dobrze na małych danych | Założenie niezależności cech często nieprawdziwe | Jako prosty model referencyjny |
+| **SVM** | Działa dobrze w wysokich wymiarach, odporny na overfitting | Wolny na dużych zbiorach, wrażliwy na parametry | Przydatny gdy cechy są dobrze rozdzielone |
+| **MLP (Neural Network)** | Uniwersalny aproksymator, wykrywa złożone wzorce | Wymaga dużo danych i strojenia | Eksperymentalnie, czy deep learning pomaga |
+
+
+### **Szczegóły działania**  
+1. **Wybór modeli**: Użytkownik może wybrać kilka modeli do porównania.  
+2. **Optymalizacja hiperparametrów**:  
+   - `GridSearchCV` (przeszukanie siatki parametrów)  
+   - `RandomizedSearchCV` (losowe próbkowanie parametrów)  
+3. **Kalibracja modeli**:  
+   - `CalibratedClassifierCV` – poprawia estymację prawdopodobieństw.  
+4. **Ewaluacja**:  
+   - Macierz pomyłek, ROC-AUC, Precision-Recall, F1-Score.  
+5. **Zapis wyników**:  
+   - Modele są zapisywane w formacie `.pkl`.  
+   - Wyniki w formacie `.json`.  
+
+### **Dlaczego takie modele?**  
+- **Różnorodność**: Modele drzewiaste (RF, XGBoost), liniowe (Logistic Regression), sieci neuronowe (MLP).  
+- **Interpretowalność**: Logistic Regression i Random Forest są łatwiejsze do wyjaśnienia niż np. deep learning.  
+- **Wydajność**: XGBoost i LightGBM są szybkie i skuteczne.  
+
+---
+
+## **5. Interpretacja modeli (`model_interpretation()`)**  
+
+### **Techniki stosowane**  
+1. **LIME (Local Interpretable Model-agnostic Explanations)**:  
+   - Wyjaśnia predykcje dla pojedynczych przypadków.  
+   - *Dlaczego?* Lekarze muszą rozumieć, dlaczego model podjął decyzję.  
+2. **Ważność cech**:  
+   - Dla modeli drzewiastych (np. Random Forest).  
+3. **Permutation Importance**:  
+   - Pokazuje, jak bardzo spada dokładność po losowym przetasowaniu cechy.  
+
+### **Dlaczego to jest potrzebne?**  
+- **Zaufanie do modelu**: Interpretowalność jest kluczowa w medycynie.  
+- **Identyfikacja kluczowych czynników ryzyka**: Np. czy `ap_hi` jest ważniejsze niż `cholesterol`?  
+
+---
+
+## **6. Generowanie raportu (`generate_pdf_report()`)**  
+
+### **Co zawiera raport?**  
+1. Podstawowe statystyki danych.  
+2. Wyniki modelowania (najlepszy model, metryki).  
+3. Najważniejsze cechy.  
+4. Zalecenia dla lekarzy.  
+
+### **Dlaczego PDF?**  
+- Łatwy do wydruku i udostępnienia.  
+- Standard w dokumentacji medycznej.  
+
+---
+
+## **PODSUMOWANIE**  
+Aplikacja łączy w sobie:  
+✔ **Analizę danych** (EDA)  
+✔ **Przygotowanie danych** (preprocessing)  
+✔ **Modelowanie** (12 algorytmów ML)  
+✔ **Interpretację** (LIME, ważność cech)  
+✔ **Raportowanie** (PDF)  
+
+**Dlaczego to działa?**  
+- **Modułowość**: Każda funkcja ma jasno określone zadanie.  
+- **Elastyczność**: Użytkownik może wybierać metody preprocessingowe i modele.  
+- **Interpretowalność**: Kluczowe w zastosowaniach medycznych.  
+
+
+Top 3 najlepsze kombinacje
+
+1. Kombinacja maksymalizująca dokładność (XGBoost)
+
+Dlaczego ta kombinacja?
+
+RobustScaler: Idealny dla danych medycznych, gdzie często występują outliery (np. skrajne wartości ciśnienia). Jest bardziej odporny niż StandardScaler, ponieważ używa mediany i IQR zamiast średniej i odchylenia standardowego.
+OneHotEncoder: Konwertuje kategorie (jak płeć, poziom cholesterolu) do postaci binarnej, co jest konieczne dla XGBoosta.
+SMOTE: Generuje syntetyczne przypadki mniejszościowej klasy (chorzy na serce), co poprawia balans klas i jakość predykcji.
+SelectKBest: Wybiera 15 najbardziej istotnych cech, redukując wymiarowość i przyspieszając trening bez utraty dokładności.
+XGBoost: Najlepszy wybór dla danych tej wielkości, z wbudowaną regularyzacją i obsługą brakujących wartości.
+Kiedy użyć?
+Gdy najważniejsza jest maksymalna dokładność predykcji, a czas treningu jest drugorzędny.
+
+2. Kombinacja optymalizująca szybkość (LightGBM)
+
+Dlaczego ta kombinacja?
+
+MinMaxScaler: Wystarczający gdy outliery są kontrolowane, szybszy niż RobustScaler.
+OrdinalEncoder: Lepszy niż OneHot dla dużych zbiorów - zmniejsza wymiarowość danych kategorycznych (np. zamienia "kobieta/mężczyzna" na 0/1).
+RandomUnderSampler: Szybsza alternatywa dla SMOTE, losowo usuwająca przypadki z klasy większościowej.
+LightGBM: Znacznie szybszy niż XGBoost (nawet 5x), szczególnie na dużych danych, przy zachowaniu porównywalnej dokładności.
+Kiedy użyć?
+Gdy potrzebujesz szybkich wyników lub testujesz wiele konfiguracji, a niewielki spadek dokładności jest akceptowalny.
+
+3. Kombinacja interpretowalna (Random Forest)
+
+Dlaczego ta kombinacja?
+
+StandardScaler: Ułatwia interpretację współczynników, przekształcając dane do rozkładu o średniej 0 i odchyleniu 1.
+OneHotEncoder: Zachowuje czytelność kategorii dla analizy ważności cech.
+SMOTEENN: Hybrydowe podejście - najpierw SMOTE generuje syntetyczne przypadki, potem TomekLinks usuwa niejednoznaczne obserwacje.
+Random Forest: Z natury bardziej interpretowalny niż boosting, pozwala na łatwą analizę ważności cech i generowanie wyjaśnień SHAP.

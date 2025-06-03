@@ -1,0 +1,91 @@
+{
+    "metadata": {
+        "model_name": "CatBoost",
+        "timestamp": "2025-06-02 22:40:33",
+        "training_time_seconds": 30.09,
+        "preprocessing": {
+            "numeric_features": [
+                "age",
+                "height",
+                "weight",
+                "ap_hi",
+                "ap_lo",
+                "bmi",
+                "pulse_pressure"
+            ],
+            "categorical_features": [
+                "gender",
+                "cholesterol",
+                "gluc",
+                "smoke",
+                "alco",
+                "active"
+            ],
+            "scaling_method": "StandardScaler",
+            "balancing_method": "Brak",
+            "missing_strategy_num": "median",
+            "missing_strategy_cat": "most_frequent",
+            "feature_selection_method": "Brak",
+            "test_size": 0.2
+        },
+        "training_parameters": {
+            "optimization_method": "RandomizedSearchCV",
+            "scoring_metric": "roc_auc",
+            "cv_folds": 5,
+            "calibration": false
+        },
+        "model_parameters": {
+            "classifier__learning_rate": 0.05,
+            "classifier__iterations": 200,
+            "classifier__depth": 6
+        },
+        "environment": {
+            "python_version": "3.9.6",
+            "libraries": {
+                "sklearn": "1.6.1",
+                "pandas": "2.2.3",
+                "numpy": "2.0.2",
+                "streamlit": "1.22.0"
+            }
+        }
+    },
+    "performance_metrics": {
+        "Model": "CatBoost",
+        "Accuracy": 0.7344285714285714,
+        "ROC-AUC": 0.8007056696181778,
+        "F1-Score": 0.7246741706161137,
+        "Precision": 0.7518438844499078,
+        "Recall": 0.6993996569468267,
+        "MCC": 0.46997936158754033,
+        "Params": "{'classifier__learning_rate': 0.05, 'classifier__iterations': 200, 'classifier__depth': 6}"
+    },
+    "feature_importances": null,
+    "confusion_matrix": [
+        [
+            5389,
+            1615
+        ],
+        [
+            2103,
+            4893
+        ]
+    ],
+    "training_parameters": {
+        "X_train_shape": [
+            56000,
+            13
+        ],
+        "y_train_distribution": {
+            "0": 28017,
+            "1": 27983
+        },
+        "X_test_shape": [
+            14000,
+            13
+        ],
+        "y_test_distribution": {
+            "0": 7004,
+            "1": 6996
+        }
+    }
+}

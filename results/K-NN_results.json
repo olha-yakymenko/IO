@@ -1,0 +1,1 @@
+{"Model": "K-NN", "Accuracy": 0.6572142857142858, "ROC-AUC": 0.716375458408313, "F1-Score": 0.6461697264616972, "Precision": 0.667275772803411, "Recall": 0.626357918810749, "MCC": 0.31499648989167306, "Params": "{'classifier__weights': 'uniform', 'classifier__n_neighbors': 19, 'classifier__algorithm': 'ball_tree'}"}

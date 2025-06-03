@@ -1,0 +1,91 @@
+{
+    "metadata": {
+        "model_name": "Logistic Regression",
+        "timestamp": "2025-06-02 21:37:38",
+        "training_time_seconds": 27.17,
+        "preprocessing": {
+            "numeric_features": [
+                "age",
+                "height",
+                "weight",
+                "ap_hi",
+                "ap_lo",
+                "bmi",
+                "pulse_pressure"
+            ],
+            "categorical_features": [
+                "gender",
+                "cholesterol",
+                "gluc",
+                "smoke",
+                "alco",
+                "active"
+            ],
+            "scaling_method": "StandardScaler",
+            "balancing_method": "Brak",
+            "missing_strategy_num": "median",
+            "missing_strategy_cat": "most_frequent",
+            "feature_selection_method": "Brak",
+            "test_size": 0.2
+        },
+        "training_parameters": {
+            "optimization_method": "RandomizedSearchCV",
+            "scoring_metric": "roc_auc",
+            "cv_folds": 5,
+            "calibration": false
+        },
+        "model_parameters": {
+            "classifier__solver": "liblinear",
+            "classifier__penalty": "l2",
+            "classifier__C": 10
+        },
+        "environment": {
+            "python_version": "3.9.6",
+            "libraries": {
+                "sklearn": "1.6.1",
+                "pandas": "2.2.3",
+                "numpy": "2.0.2",
+                "streamlit": "1.22.0"
+            }
+        }
+    },
+    "performance_metrics": {
+        "Model": "Logistic Regression",
+        "Accuracy": 0.714,
+        "ROC-AUC": 0.7788956624965429,
+        "F1-Score": 0.701861504095309,
+        "Precision": 0.7325147653092944,
+        "Recall": 0.6736706689536878,
+        "MCC": 0.42935971800970346,
+        "Params": "{'classifier__solver': 'liblinear', 'classifier__penalty': 'l2', 'classifier__C': 10}"
+    },
+    "feature_importances": null,
+    "confusion_matrix": [
+        [
+            5283,
+            1721
+        ],
+        [
+            2283,
+            4713
+        ]
+    ],
+    "training_parameters": {
+        "X_train_shape": [
+            56000,
+            13
+        ],
+        "y_train_distribution": {
+            "0": 28017,
+            "1": 27983
+        },
+        "X_test_shape": [
+            14000,
+            13
+        ],
+        "y_test_distribution": {
+            "0": 7004,
+            "1": 6996
+        }
+    }
+}

@@ -1,0 +1,92 @@
+{
+    "metadata": {
+        "model_name": "Extra Trees",
+        "timestamp": "2025-06-02 22:41:46",
+        "training_time_seconds": 56.05,
+        "preprocessing": {
+            "numeric_features": [
+                "age",
+                "height",
+                "weight",
+                "ap_hi",
+                "ap_lo",
+                "bmi",
+                "pulse_pressure"
+            ],
+            "categorical_features": [
+                "gender",
+                "cholesterol",
+                "gluc",
+                "smoke",
+                "alco",
+                "active"
+            ],
+            "scaling_method": "StandardScaler",
+            "balancing_method": "Brak",
+            "missing_strategy_num": "median",
+            "missing_strategy_cat": "most_frequent",
+            "feature_selection_method": "Brak",
+            "test_size": 0.2
+        },
+        "training_parameters": {
+            "optimization_method": "RandomizedSearchCV",
+            "scoring_metric": "roc_auc",
+            "cv_folds": 5,
+            "calibration": false
+        },
+        "model_parameters": {
+            "classifier__n_estimators": 100,
+            "classifier__min_samples_split": 10,
+            "classifier__min_samples_leaf": 1,
+            "classifier__max_depth": null
+        },
+        "environment": {
+            "python_version": "3.9.6",
+            "libraries": {
+                "sklearn": "1.6.1",
+                "pandas": "2.2.3",
+                "numpy": "2.0.2",
+                "streamlit": "1.22.0"
+            }
+        }
+    },
+    "performance_metrics": {
+        "Model": "Extra Trees",
+        "Accuracy": 0.7202142857142857,
+        "ROC-AUC": 0.7841334295129565,
+        "F1-Score": 0.7176529950263101,
+        "Precision": 0.7238621491929621,
+        "Recall": 0.7115494568324757,
+        "MCC": 0.4404866090110284,
+        "Params": "{'classifier__n_estimators': 100, 'classifier__min_samples_split': 10, 'classifier__min_samples_leaf': 1, 'classifier__max_depth': None}"
+    },
+    "feature_importances": null,
+    "confusion_matrix": [
+        [
+            5105,
+            1899
+        ],
+        [
+            2018,
+            4978
+        ]
+    ],
+    "training_parameters": {
+        "X_train_shape": [
+            56000,
+            13
+        ],
+        "y_train_distribution": {
+            "0": 28017,
+            "1": 27983
+        },
+        "X_test_shape": [
+            14000,
+            13
+        ],
+        "y_test_distribution": {
+            "0": 7004,
+            "1": 6996
+        }
+    }
+}

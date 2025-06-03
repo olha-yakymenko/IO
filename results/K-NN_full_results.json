@@ -1,0 +1,91 @@
+{
+    "metadata": {
+        "model_name": "K-NN",
+        "timestamp": "2025-06-02 22:38:48",
+        "training_time_seconds": 994.33,
+        "preprocessing": {
+            "numeric_features": [
+                "age",
+                "height",
+                "weight",
+                "ap_hi",
+                "ap_lo",
+                "bmi",
+                "pulse_pressure"
+            ],
+            "categorical_features": [
+                "gender",
+                "cholesterol",
+                "gluc",
+                "smoke",
+                "alco",
+                "active"
+            ],
+            "scaling_method": "StandardScaler",
+            "balancing_method": "Brak",
+            "missing_strategy_num": "median",
+            "missing_strategy_cat": "most_frequent",
+            "feature_selection_method": "Brak",
+            "test_size": 0.2
+        },
+        "training_parameters": {
+            "optimization_method": "RandomizedSearchCV",
+            "scoring_metric": "roc_auc",
+            "cv_folds": 5,
+            "calibration": false
+        },
+        "model_parameters": {
+            "classifier__weights": "uniform",
+            "classifier__n_neighbors": 19,
+            "classifier__algorithm": "kd_tree"
+        },
+        "environment": {
+            "python_version": "3.9.6",
+            "libraries": {
+                "sklearn": "1.6.1",
+                "pandas": "2.2.3",
+                "numpy": "2.0.2",
+                "streamlit": "1.22.0"
+            }
+        }
+    },
+    "performance_metrics": {
+        "Model": "K-NN",
+        "Accuracy": 0.6572142857142858,
+        "ROC-AUC": 0.7162478359176608,
+        "F1-Score": 0.6460653440519213,
+        "Precision": 0.6673777236020113,
+        "Recall": 0.6260720411663808,
+        "MCC": 0.3150073918767926,
+        "Params": "{'classifier__weights': 'uniform', 'classifier__n_neighbors': 19, 'classifier__algorithm': 'kd_tree'}"
+    },
+    "feature_importances": null,
+    "confusion_matrix": [
+        [
+            4821,
+            2183
+        ],
+        [
+            2616,
+            4380
+        ]
+    ],
+    "training_parameters": {
+        "X_train_shape": [
+            56000,
+            13
+        ],
+        "y_train_distribution": {
+            "0": 28017,
+            "1": 27983
+        },
+        "X_test_shape": [
+            14000,
+            13
+        ],
+        "y_test_distribution": {
+            "0": 7004,
+            "1": 6996
+        }
+    }
+}

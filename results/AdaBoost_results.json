@@ -1,0 +1,1 @@
+{"Model": "AdaBoost", "Accuracy": 0.7231428571428572, "ROC-AUC": 0.7921658300949649, "F1-Score": 0.7027151403589508, "Precision": 0.7581926514399205, "Recall": 0.6548027444253859, "MCC": 0.4504459212253521, "Params": "{'classifier__n_estimators': 200, 'classifier__learning_rate': 1.0}"}
