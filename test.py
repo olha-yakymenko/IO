@@ -11,12 +11,11 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder, MinMaxScaler, R
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import (RandomForestClassifier, GradientBoostingClassifier, 
-                            AdaBoostClassifier, ExtraTreesClassifier, VotingClassifier)
-from sklearn.linear_model import LogisticRegression, SGDClassifier
-from sklearn.svm import SVC, LinearSVC
+                            AdaBoostClassifier, ExtraTreesClassifier)
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
-from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import (accuracy_score, confusion_matrix, classification_report, 
                            roc_auc_score, roc_curve, precision_recall_curve, f1_score,
                            precision_score, recall_score, matthews_corrcoef)
